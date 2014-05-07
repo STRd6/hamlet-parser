@@ -16,5 +16,5 @@
     "prepublish": "script/prepublish",
     "test": "script/test"
   },
-  "main": "dist/parser.js"
+  "main": "dist/main.js"
 }

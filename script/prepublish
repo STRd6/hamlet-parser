@@ -2,10 +2,10 @@
 set -e
 
 # normal files
-./node_modules/.bin/coffee -co dist/ .
+./node_modules/.bin/coffee -co dist/ source
 
 # lexer
-node_modules/.bin/jison-lex -o dist/lexer.js ./haml.jisonlex
+node_modules/.bin/jison-lex -o dist/lexer.js source/haml.jisonlex
 echo 'module.exports = lexer;' >> dist/lexer.js
 
 # parser
