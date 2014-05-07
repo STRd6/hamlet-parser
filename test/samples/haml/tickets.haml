@@ -1,0 +1,18 @@
+Choose a ticket class:
+%select
+  - on "change", @chosenTicket
+  - each @tickets, ->
+    %option= @name
+
+%button Clear
+  - on "click", @resetTicket
+
+- with @chosenTicket, ->
+  %p
+    - if @price
+      You have chosen
+      %b= @name
+      %span
+        $#{@price}
+    - else
+      No ticket chosen
