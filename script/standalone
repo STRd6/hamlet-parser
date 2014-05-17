@@ -1,3 +1,0 @@
-#!/bin/bash
-
-./node_modules/.bin/browserify dist/runtime.js -o demo/hamlet-runtime.js

@@ -68,7 +68,6 @@ grammar =
 
   attributes: [
     o "LEFT_PARENTHESIS attributePairs RIGHT_PARENTHESIS", -> $2
-    o "LEFT_BRACE attributePairs RIGHT_BRACE", -> $2
   ]
 
   attributePairs: [
@@ -78,6 +77,7 @@ grammar =
 
   attributePair: [
     o "ATTRIBUTE EQUAL ATTRIBUTE_VALUE",             -> name: $1, value: $3
+    o "AT_ATTRIBUTE",                                -> name: $1.substring(1), value: $1
   ]
 
   name: [
