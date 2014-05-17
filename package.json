@@ -1,6 +1,6 @@
 {
   "name": "hamlet-parser",
-  "version": "0.6.0-pre.0",
+  "version": "0.6.0-pre.2",
   "devDependencies": {
     "coffee-script": "~1.6.3",
     "jison": "~0.4.6",
@@ -16,5 +16,6 @@
     "prepublish": "script/prepublish",
     "test": "script/test"
   },
+  "files": ["dist/"],
   "main": "dist/main.js"
 }
