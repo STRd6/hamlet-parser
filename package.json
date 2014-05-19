@@ -2,7 +2,7 @@
   "name": "hamlet-parser",
   "version": "0.6.0-pre.3",
   "devDependencies": {
-    "coffee-script": "~1.6.3",
+    "coffee-script": "~1.7.1",
     "jison": "~0.4.6",
     "jison-lex": "~0.2.1",
     "mocha": "~1.12.0",
