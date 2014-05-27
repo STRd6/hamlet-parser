@@ -32,4 +32,4 @@ Name                        {NameStartChar}{NameChar}*(?!\-)
 \%{Name}              yytext = yytext.substring(1); return 'TAG';
 "=".*                 yytext = yytext.substring(1).trim(); return 'BUFFERED_CODE';
 "-".*                 yytext = yytext.substring(1).trim(); return 'UNBUFFERED_CODE';
-.*                    yytext = yytext.trimLeft(); return 'TEXT';
+.*                    yytext = yytext.trim(); return 'TEXT';
