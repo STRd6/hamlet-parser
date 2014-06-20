@@ -1,4 +1,4 @@
-# We generate a parse because we don't want to pull in the entirety of
+# We generate a parser because we don't want to pull in the entirety of
 # jison for the browser environment.
 
 {node:o, create} = require "./grammar_dsl"
