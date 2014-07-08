@@ -34,6 +34,15 @@ extend parser.yy,
     if lastNode.filter
       @appendFilterContent(lastNode, "")
 
+  # If we indent a nested section multiple times we'll have a gap
+  # in the nodePath array, so to find the parent we need to
+  # back up until we reach an existing node.
+  lastParent: (indentation) ->
+    while !(parent = @nodePath[indentation])
+      indentation -= 1
+
+    return parent
+
   append: (node, indentation=0) ->
     if node.filterLine
       lastNode = @nodePath[@nodePath.length - 1]
@@ -41,7 +50,7 @@ extend parser.yy,
 
       return
 
-    parent = @nodePath[indentation]
+    parent = @lastParent(indentation)
     @appendChild parent, node
 
     index = indentation + 1
