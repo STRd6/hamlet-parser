@@ -4,15 +4,12 @@ set -e
 # normal files
 ./node_modules/.bin/coffee -co dist/ source
 
-# lexer
-node_modules/.bin/jison-lex -o dist/lexer.js source/haml.jisonlex
-echo 'module.exports = lexer;' >> dist/lexer.js
+# lexers
+node_modules/.bin/jison-lex -o dist/jade_lexer.js source/jade.jisonlex
+echo 'module.exports = jade_lexer;' >> dist/jade_lexer.js
+
+node_modules/.bin/jison-lex -o dist/haml_lexer.js source/haml.jisonlex
+echo 'module.exports = haml_lexer;' >> dist/haml_lexer.js
 
 # parser
 script/generate_parser.coffee
-
-for file in dist/*.js
-do
-  ./node_modules/.bin/uglifyjs $file > tmp.js 2>/dev/null
-  mv tmp.js $file
-done

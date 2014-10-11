@@ -3,20 +3,18 @@ fs = require('fs')
 
 parser = require('../dist/main')
 
+parseDirectory = (directory, mode) ->
+  fs.readdirSync(directory).forEach (file) ->
+    data = fs.readFileSync "#{directory}/#{file}", "UTF-8"
+    ast = null
+
+    it "should parse #{file}", ->
+      ast = parser.parse(data, mode)
+      assert ast
+
 describe 'parser', ->
-  it 'should exist', ->
-    assert(parser)
+  describe 'haml samples', ->
+    parseDirectory "test/samples/haml", "haml"
 
-  it 'should parse some stuff', ->
-    assert parser.parse("%yolo")
-
-  describe 'samples', ->
-    sampleDir = "test/samples/haml"
-
-    fs.readdirSync(sampleDir).forEach (file) ->
-      data = fs.readFileSync "#{sampleDir}/#{file}", "UTF-8"
-      ast = null
-
-      it "should parse #{file}", ->
-        ast = parser.parse(data)
-        assert ast
+  describe 'jade samples', ->
+    parseDirectory "test/samples/jade", "jade"

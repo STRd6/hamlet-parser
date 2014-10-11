@@ -1,7 +1,11 @@
 # Here we attach the lexer to the parser and add our methods to construct the parse tree.
 
-lexer = require "./lexer" # This is only in the build dir right now
 {parser} = require "./parser"
+
+ # This is only in the build dir right now
+lexers =
+  haml: require "./haml_lexer"
+  jade: require "./jade_lexer"
 
 extend = (target, sources...) ->
   for source in sources
@@ -12,8 +16,8 @@ extend = (target, sources...) ->
 
 oldParse = parser.parse
 extend parser,
-  lexer: lexer
-  parse: (input) ->
+  parse: (input, mode="haml") ->
+    parser.lexer = lexers[mode]
     # Initialize shared state for gross hacks
     extend parser.yy,
       indent: 0
